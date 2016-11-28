@@ -1,9 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Route, Router, browserHistory } from 'react-router';
+
 import App from './App';
+import store from './store';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <Router history={browserHistory} >
+      <Route path="/" component={App} />
+      <Route path="/game" component={App} />
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );

@@ -12,6 +12,7 @@ const Block = styled.div`
   cursor: pointer;
   transition: 0.3s;
   animation: none;
+  border-radius: 5px;
 
   &.active {
     animation: ${({ color }) => createNeonAnimation(color)} 0.3s linear;
