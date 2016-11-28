@@ -8,7 +8,7 @@ import { colors } from '../constants';
 const RedBlock = () => <Block m={1} color={colors.red} />
 const BlueBlock = () => <Block m={1} color={colors.blue} />
 const GreenBlock = () => <Block m={1} color={colors.green} />
-const YellowBlock = () => <Block m={1} color={colors.yellow} />
+const YellowBlock = () => <Block m={1} color={colors.yellow} className="active" />
 
 class Board extends Component {
   render() {
