@@ -5,10 +5,10 @@ import Block from '../components/Block';
 import Shell from '../components/Shell';
 import { colors } from '../constants';
 
-const RedBlock = () => <Block m={1} color={colors.red} />
-const BlueBlock = () => <Block m={1} color={colors.blue} />
-const GreenBlock = () => <Block m={1} color={colors.green} />
-const YellowBlock = () => <Block m={1} color={colors.yellow} className="active" />
+const RedBlock = ({ ...props }) => <Block m={1} color={colors.red} className="top-left" {...props} />
+const GreenBlock = ({ ...props }) => <Block m={1} color={colors.green} className="top-right" {...props} />
+const BlueBlock = ({ ...props }) => <Block m={1} color={colors.blue} className="bottom-left" {...props} />
+const YellowBlock = ({ ...props }) => <Block m={1} color={colors.yellow} className="bottom-right" {...props} />
 
 class Board extends Component {
   render() {
@@ -26,7 +26,7 @@ class Board extends Component {
           justify="center"
         >
           <BlueBlock />
-          <YellowBlock />
+          <YellowBlock active={true} />
         </Flex>
       </Shell>
     );
