@@ -23,10 +23,11 @@ const Block = styled.div`
   cursor: pointer;
   animation: none;
   transition: transform 0.3s;
-  ${({ active }) => active ? activeCSS : ``}
+  ${({ active }) => active ? activeCSS : ''}
 
   &:hover {
     ${transform}
+    box-shadow: 0 0 15px rgba(0, 0, 0, .8);
   }
 
   &.top-left {
