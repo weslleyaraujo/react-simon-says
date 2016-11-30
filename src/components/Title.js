@@ -7,37 +7,24 @@ const Headline = styled.h1`
   font-size: 5em;
 `;
 
-const colorify = (colors, word) => {
+const colorify = ({ colors, value }) => {
   const list = Object.keys(colors);
   const size = list.length - 1;
-
-  const incrementalSelector = list => {
-    let marker = 0;
-    return () => {
-      if (list[marker]) {
-        const color = list[marker];
-        marker++;
-        return color;
-      }
-
-      marker = 1;
-      return list[0];
-    }
-  }
-
-  const select = incrementalSelector(list);
+  const letters = [...Array(Math.floor(value.length / size))]
+    .reduce((acc, n) => [...acc, ...list], [])
+    .concat(list.slice(0, list.length % size))
+    .map(x => colors[x])
+    .map((color, i) => (
+      <span key={i} style={{ color }}>{value[i]}</span>
+    ));
 
   return (
-    <span>
-      {word.split('').map((l, i) => (
-        <span key={i} style={{ color: colors[select()] }}>{l}</span>
-      ))}
-    </span>
+    <span>{letters}</span>
   );
 }
 
 const Title = ({ value }) =>
-  (<Headline>{colorify(colors, value)}</Headline>);
+  (<Headline>{colorify({ colors, value })}</Headline>);
 
 Title.propTypes = {
   value: PropTypes.string.isRequired,
