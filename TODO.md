@@ -32,7 +32,8 @@
 
 ```
 START_GAME
-PRESS_COLOR
+PRESS_COLOR ->
+  async action which will re-consult ?
 
 ```
 

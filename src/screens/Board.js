@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { Flex } from 'reflexbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -7,13 +6,7 @@ import { bindActionCreators } from 'redux';
 import Block from '../components/Block';
 import Shell from '../components/Shell';
 import { colors } from '../constants';
-import {
-  startPresentation,
-  lightenBlock,
-  lightenOffBlock,
-  finishPresentation,
-  startGame,
-} from '../actions/game';
+import { actionCreators } from '../actions/game';
 
 function sleep(ms = 0) {
   return new Promise(r => setTimeout(r, ms));
@@ -62,6 +55,7 @@ class Board extends Component {
 
   render() {
     const { presentation } = this.props.game;
+
     return (
       <Shell style={{ pointerEvents: presentation ? 'none' : 'initial' }}>
         {this.renderRow({ from: 0, to: 2 })}
@@ -74,12 +68,6 @@ class Board extends Component {
 export default connect(
   state => state,
   dispatch => ({
-    actions: bindActionCreators({
-      startPresentation,
-      lightenBlock,
-      lightenOffBlock,
-      finishPresentation,
-      startGame,
-    }, dispatch),
+    actions: bindActionCreators(actionCreators, dispatch),
   }),
 )(Board);

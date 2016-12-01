@@ -7,7 +7,7 @@ export default function blocks(state = [], action) {
     case START_GAME:
       return [
         names[Math.floor(Math.random() * names.length)],
-      ]
+      ];
 
     default:
       return state;
