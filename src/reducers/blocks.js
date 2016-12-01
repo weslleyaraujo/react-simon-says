@@ -1,57 +1,42 @@
 import { LIGHTEN_BLOCK, LIGHTEN_OFF_BLOCK } from '../actions/game';
 
-const initialState = {
-  ids: ['green', 'red', 'yellow', 'blue'],
-  byId: {
-    green: {
-      component: 'GreenBlock',
-      active: false,
-    },
-    red: {
-      component: 'RedBlock',
-      active: false,
-    },
-    yellow: {
-      component: 'YellowBlock',
-      active: false,
-    },
-    blue: {
-      component: 'BlueBlock',
-      active: false,
-    },
+const initialState = [
+  {
+    id: 'green',
+    component: 'GreenBlock',
+    active: false,
   },
-}
+  {
+    id: 'red',
+    component: 'RedBlock',
+    active: false,
+  },
+  {
+    id: 'yellow',
+    component: 'YellowBlock',
+    active: false,
+  },
+  {
+    id: 'blue',
+    component: 'BlueBlock',
+    active: false,
+  },
+];
 
 export default function blocks(state = initialState, action) {
   const { type, payload } = action;
   switch(type) {
     case LIGHTEN_BLOCK:
-      return {
-        ...state,
-        byId: state.ids.reduce((acc, id) => {
-          return {
-            ...acc,
-            [id]: {
-              ...state.byId[id],
-              active: payload.id === id,
-            },
-          }
-        }, {}),
-      }
+      return state.map(b => ({
+        ...b,
+        active: payload.id === b.id,
+      }));
 
     case LIGHTEN_OFF_BLOCK:
-      return {
-        ...state,
-        byId: state.ids.reduce((acc, id) => {
-          return {
-            ...acc,
-            [id]: {
-              ...state.byId[id],
-              active: false,
-            },
-          }
-        }, {}),
-      }
+      return state.map(b => ({
+        ...b,
+        active: false,
+      }));
 
     default:
       return state;

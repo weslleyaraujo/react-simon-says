@@ -13,52 +13,50 @@ function sleep(ms = 0) {
 }
 
 const Blocks = {
-  GreenBlock: ({ ...props }) => <Block m={1} color={colors.green} className="top-left" {...props} />,
-  RedBlock: ({ ...props }) => <Block m={1} color={colors.red} className="top-right" {...props} />,
-  YellowBlock: ({ ...props }) => <Block m={1} color={colors.yellow} className="bottom-left" {...props} />,
-  BlueBlock: ({ ...props }) => <Block m={1} color={colors.blue} className="bottom-right" {...props} />,
-}
-
-const renderBlock = (block, index) => {
-  const Comp = Blocks[block.component];
-  return <Comp {...block} key={index} />
+  GreenBlock:   ({ ...props })  => <Block m={1} color={colors.green} className="top-left" {...props} />,
+  RedBlock:     ({ ...props })  => <Block m={1} color={colors.red} className="top-right" {...props} />,
+  YellowBlock:  ({ ...props })  => <Block m={1} color={colors.yellow} className="bottom-left" {...props} />,
+  BlueBlock:    ({ ...props })  => <Block m={1} color={colors.blue} className="bottom-right" {...props} />,
 }
 
 class Board extends Component {
 
   componentDidMount() {
-    const { match } = this.props;
-    const { startPresentation, lightenBlock, lightenOffBlock, finishPresentation } = this.props.actions;
+    const { match, actions } = this.props;
 
     sleep(500).then(async () => {
-      startPresentation();
+      actions.startPresentation();
       for (let id of match) {
-        lightenBlock({ id });
+        actions.lightenBlock({ id });
         await sleep(500);
-        lightenOffBlock();
+        actions.lightenOffBlock();
         await sleep(500);
       }
-      finishPresentation();
+      actions.finishPresentation();
     });
   }
 
-  render() {
-    const { blocks } = this.props;
+  renderBlock({ block, index }) {
+    const Comp = Blocks[block.component];
+    return <Comp {...block} key={index} />
+  }
 
+  renderRow({ from, to }) {
+    return (
+      <Flex
+        align="center"
+        justify="center"
+      >
+        {this.props.blocks.slice(from, to).map((block, index) => this.renderBlock({ block, index }))}
+      </Flex>
+    )
+  }
+
+  render() {
     return (
       <Shell>
-        <Flex
-          align="center"
-          justify="center"
-        >
-          {blocks.ids.slice(0, 2).map((id, i) => renderBlock(blocks.byId[id], i))}
-        </Flex>
-        <Flex
-          align="center"
-          justify="center"
-        >
-          {blocks.ids.slice(2, 4).map((id, i) => renderBlock(blocks.byId[id], i))}
-        </Flex>
+        {this.renderRow({ from: 0, to: 2 })}
+        {this.renderRow({ from: 2, to: 4 })}
       </Shell>
     );
   }
