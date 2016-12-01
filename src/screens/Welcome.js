@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Flex, Box, withReflex } from 'reflexbox';
-import { Link } from 'react-router';
+import { Flex, withReflex } from 'reflexbox';
 import GoOctoface from 'react-icons/lib/go/octoface';
 
 import Title from '../components/Title';
 import Shell from '../components/Shell';
 import { ButtonLink } from '../components/Buttons';
-import { colors } from '../constants';
 
 const AbsoluteOnTop = withReflex()(styled.div`
   position: absolute;

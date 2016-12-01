@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { withReflex } from 'reflexbox';
 import color from 'color';
@@ -9,8 +8,7 @@ const transform = `
 `
 
 const activeCSS = props => `
-  border: 1px solid white;
-  background-color: ${color(props.color).lighten(0.7777).hexString()} !important;
+  background-color: ${color(props.color).lighten(0.333).hexString()} !important;
   animation: ${createNeonAnimation(props.color)} 0.5s linear;
   ${transform}
 `;

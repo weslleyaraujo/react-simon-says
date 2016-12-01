@@ -5,22 +5,12 @@ import { bindActionCreators } from 'redux';
 
 import Block from '../components/Block';
 import Shell from '../components/Shell';
-import { startGame, lightenBlock, lightenOffBlock } from '../actions/game';
+import { startPresentation, lightenBlock, lightenOffBlock, finishPresentation } from '../actions/game';
 import { colors } from '../constants';
-
-function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 function sleep(ms = 0) {
   return new Promise(r => setTimeout(r, ms));
 }
-
-(async () => {
-  console.log('a');
-  await sleep(1000);
-  console.log('b');
-})()
 
 const Blocks = {
   GreenBlock: ({ ...props }) => <Block m={1} color={colors.green} className="top-left" {...props} />,
@@ -38,17 +28,18 @@ class Board extends Component {
 
   componentDidMount() {
     const { match } = this.props;
-    const { startGame, lightenBlock, lightenOffBlock } = this.props.actions;
+    const { startPresentation, lightenBlock, lightenOffBlock, finishPresentation } = this.props.actions;
 
-    startGame();
-
-    (async () => {
+    sleep(500).then(async () => {
+      startPresentation();
       for (let id of match) {
         lightenBlock({ id });
-        await sleep(600);
+        await sleep(500);
         lightenOffBlock();
+        await sleep(500);
       }
-    })();
+      finishPresentation();
+    });
   }
 
   render() {
@@ -77,9 +68,10 @@ export default connect(
   state => state,
   dispatch => ({
     actions: bindActionCreators({
-      startGame,
+      startPresentation,
       lightenBlock,
       lightenOffBlock,
+      finishPresentation,
     }, dispatch),
   }),
 )(Board);
