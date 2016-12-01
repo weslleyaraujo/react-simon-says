@@ -10,8 +10,8 @@ const transform = `
 
 const activeCSS = props => `
   border: 1px solid white;
-  background-color: ${color(props.color).lighten(0.7777).hexString()};
-  animation: ${createNeonAnimation(props.color)} 0.5s linear infinite;
+  background-color: ${color(props.color).lighten(0.7777).hexString()} !important;
+  animation: ${createNeonAnimation(props.color)} 0.5s linear;
   ${transform}
 `;
 
@@ -23,7 +23,7 @@ const Block = styled.div`
   cursor: pointer;
   animation: none;
   transition: transform 0.3s;
-  ${({ active }) => active ? activeCSS : ''}
+  ${(props) => props.active ? activeCSS(props) : ''}
 
   &:hover {
     ${transform}

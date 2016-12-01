@@ -3,20 +3,39 @@
 * state
 
 ```
-  status: {
-    onGoing: false,
-    presentationOnGoing: false,
-    currentScore: 0,
-    highScore: 0,
+  game: {
+    presentation: false,
+    score: 0,
+    highscore: 0,
   },
-  match: [
+  blocks: [
     {
-      color: 'red',
-      success: true,
+      component: 'RedBlock',
+      active: false,
     },
-    ...
+    {
+      component: 'RedBlock',
+      active: false,
+    },
+    {
+      component: 'RedBlock',
+      active: false,
+    },
+  ],
+  match: [
+    'red',
+    'blue',
+    'blue',
   ],
 ```
+* actions
+
+```
+START_GAME
+PRESS_COLOR
+
+```
+
 
 ## neon title
 
