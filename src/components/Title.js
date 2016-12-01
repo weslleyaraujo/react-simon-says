@@ -5,6 +5,7 @@ import { colors } from '../constants';
 const Headline = styled.h1`
   color: #FFF;
   font-size: 5em;
+  text-align: center;
 `;
 
 const colorify = ({ colors, value }) => {

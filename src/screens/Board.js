@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { Flex } from 'reflexbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Block from '../components/Block';
 import Shell from '../components/Shell';
-import { startPresentation, lightenBlock, lightenOffBlock, finishPresentation } from '../actions/game';
 import { colors } from '../constants';
+import {
+  startPresentation,
+  lightenBlock,
+  lightenOffBlock,
+  finishPresentation,
+  startGame,
+} from '../actions/game';
 
 function sleep(ms = 0) {
   return new Promise(r => setTimeout(r, ms));
@@ -22,11 +29,12 @@ const Blocks = {
 class Board extends Component {
 
   componentDidMount() {
-    const { match, actions } = this.props;
+    const { actions } = this.props;
+    actions.startGame();
 
     sleep(500).then(async () => {
       actions.startPresentation();
-      for (let id of match) {
+      for (let id of this.props.match) {
         actions.lightenBlock({ id });
         await sleep(500);
         actions.lightenOffBlock();
@@ -53,8 +61,9 @@ class Board extends Component {
   }
 
   render() {
+    const { presentation } = this.props.game;
     return (
-      <Shell>
+      <Shell style={{ pointerEvents: presentation ? 'none' : 'initial' }}>
         {this.renderRow({ from: 0, to: 2 })}
         {this.renderRow({ from: 2, to: 4 })}
       </Shell>
@@ -70,6 +79,7 @@ export default connect(
       lightenBlock,
       lightenOffBlock,
       finishPresentation,
+      startGame,
     }, dispatch),
   }),
 )(Board);

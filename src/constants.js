@@ -5,3 +5,10 @@ export const colors = {
   yellow: '#FFDC00',
   white: 'white',
 }
+
+export const names = [
+  'green',
+  'red',
+  'yellow',
+  'blue',
+];
