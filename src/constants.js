@@ -6,7 +6,7 @@ export const colors = {
   white: 'white',
 }
 
-export const names = [
+export const ids = [
   'green',
   'red',
   'yellow',

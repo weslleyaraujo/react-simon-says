@@ -1,4 +1,4 @@
-import { LIGHTEN_BLOCK, LIGHTEN_OFF_BLOCK } from '../actions/game';
+import { LIGHTEN_BLOCK, LIGHTEN_OFF_BLOCK, GUESS_COLOR } from '../actions/game';
 
 const initialState = [
   {

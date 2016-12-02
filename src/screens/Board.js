@@ -8,6 +8,7 @@ import Shell from '../components/Shell';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
 
+// TODO: movo to a helper function
 function sleep(ms = 0) {
   return new Promise(r => setTimeout(r, ms));
 }
@@ -22,24 +23,35 @@ const Blocks = {
 class Board extends Component {
 
   componentDidMount() {
-    const { actions } = this.props;
+    const { actions} = this.props;
     actions.startGame();
 
-    sleep(500).then(async () => {
-      actions.startPresentation();
-      for (let id of this.props.match) {
-        actions.lightenBlock({ id });
-        await sleep(500);
-        actions.lightenOffBlock();
-        await sleep(500);
-      }
-      actions.finishPresentation();
-    });
+    // TODO: read time from constants
+    sleep(500).then(() => actions.makePresentation());
   }
 
   renderBlock({ block, index }) {
     const Comp = Blocks[block.component];
-    return <Comp {...block} key={index} />
+    return (
+      <Comp
+        {...block}
+        key={index}
+        onClick={() => this.onBlockClick({
+          id: block.id,
+        })}
+      />
+    );
+  }
+
+  onBlockClick({ id }) {
+    const { match, actions } = this.props;
+    const tail = match.guessed.length;
+    const succeeded = match.all[tail] === id;
+
+    actions.guessColor({
+      id,
+      succeeded,
+    });
   }
 
   renderRow({ from, to }) {
@@ -54,10 +66,11 @@ class Board extends Component {
   }
 
   render() {
-    const { presentation } = this.props.game;
+    const { presentation, score } = this.props.game;
 
     return (
       <Shell style={{ pointerEvents: presentation ? 'none' : 'initial' }}>
+        <h3>score: {score}</h3>
         {this.renderRow({ from: 0, to: 2 })}
         {this.renderRow({ from: 2, to: 4 })}
       </Shell>

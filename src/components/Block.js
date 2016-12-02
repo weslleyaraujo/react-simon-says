@@ -7,8 +7,10 @@ const transform = `
   transform: scale(1.02);
 `
 
+const lighten = from => color(from).lighten(0.333).hexString();
+
 const activeCSS = props => `
-  background-color: ${color(props.color).lighten(0.333).hexString()} !important;
+  background-color: ${lighten(props.color)} !important;
   animation: ${createNeonAnimation(props.color)} 0.5s linear;
   ${transform}
 `;
@@ -22,6 +24,10 @@ const Block = styled.div`
   animation: none;
   transition: transform 0.3s;
   ${(props) => props.active ? activeCSS(props) : ''}
+
+  &:active {
+    background-color: ${({ color }) => lighten(color)}
+  }
 
   &:hover {
     ${transform}
