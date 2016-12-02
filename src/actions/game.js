@@ -1,7 +1,6 @@
 import createAction from '../utils/create-action';
-
-// TODO: move to constants
-const PRESENTATION_DELAY_TIME = 500;
+import { PRESENTATION_DELAY_TIME } from '../constants';
+import sleep from '../utils/sleep';
 
 export const START_GAME = 'START_GAME';
 export const START_PRESENTATION = 'START_PRESENTATION';
@@ -17,9 +16,6 @@ const startPresentation = createAction(START_PRESENTATION);
 const finishPresentation = createAction(FINISH_PRESENTATION);
 const lightenBlock = createAction(LIGHTEN_BLOCK);
 const lightenOffBlock = createAction(LIGHTEN_OFF_BLOCK);
-
-// TODO: move to a helper
-const sleep = (ms = 0) => new Promise(r => setTimeout(r, ms));
 
 const makePresentation = payload => async (dispatch, getState) => {
   dispatch(startPresentation());

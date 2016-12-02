@@ -12,3 +12,5 @@ export const ids = [
   'yellow',
   'blue',
 ];
+
+export const PRESENTATION_DELAY_TIME = 500;

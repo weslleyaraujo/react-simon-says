@@ -7,11 +7,8 @@ import Block from '../components/Block';
 import Shell from '../components/Shell';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
-
-// TODO: movo to a helper function
-function sleep(ms = 0) {
-  return new Promise(r => setTimeout(r, ms));
-}
+import { PRESENTATION_DELAY_TIME } from '../constants';
+import sleep from '../utils/sleep';
 
 const Blocks = {
   GreenBlock:   ({ ...props })  => <Block m={1} color={colors.green} className="top-left" {...props} />,
@@ -25,9 +22,7 @@ class Board extends Component {
   componentDidMount() {
     const { actions} = this.props;
     actions.startGame();
-
-    // TODO: read time from constants
-    sleep(500).then(() => actions.makePresentation());
+    sleep(PRESENTATION_DELAY_TIME).then(() => actions.makePresentation());
   }
 
   renderBlock({ block, index }) {
@@ -66,11 +61,10 @@ class Board extends Component {
   }
 
   render() {
-    const { presentation, score } = this.props.game;
+    const { presentation, score, gameOver } = this.props.game;
 
     return (
-      <Shell style={{ pointerEvents: presentation ? 'none' : 'initial' }}>
-        <h3>score: {score}</h3>
+      <Shell style={{ pointerEvents: (presentation || gameOver) ? 'none' : 'initial' }}>
         {this.renderRow({ from: 0, to: 2 })}
         {this.renderRow({ from: 2, to: 4 })}
       </Shell>
