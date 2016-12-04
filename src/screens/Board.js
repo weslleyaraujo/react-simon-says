@@ -31,6 +31,10 @@ const Blocks = {
 class Board extends Component {
 
   componentDidMount() {
+    this.startMatch();
+  }
+
+  startMatch() {
     const { actions} = this.props;
     actions.startGame();
     sleep(PRESENTATION_DELAY_TIME).then(() => actions.makePresentation());
@@ -66,7 +70,9 @@ class Board extends Component {
         align="center"
         justify="center"
       >
-        {this.props.blocks.slice(from, to).map((block, index) => this.renderBlock({ block, index }))}
+        {this.props.blocks.slice(from, to).map((block, index) =>
+          this.renderBlock({ block, index }))
+        }
       </Flex>
     )
   }
@@ -83,7 +89,7 @@ class Board extends Component {
             {gameOver && (
               <div>
                 <p>game over</p>
-                <Button>Try again</Button>
+                <Button onClick={this.startMatch.bind(this)}>Try again</Button>
               </div>
             )}
           </div>
