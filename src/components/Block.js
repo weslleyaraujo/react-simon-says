@@ -23,7 +23,7 @@ const Pad = styled.div`
   background-color: ${({ color }) => color}
   cursor: pointer;
   animation: none;
-  transition: 0.4s;
+  transition: 0.2s;
   ${(props) => props.active ? activeCSS(props) : ''}
 
   &:active {

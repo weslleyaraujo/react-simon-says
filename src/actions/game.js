@@ -1,5 +1,9 @@
 import createAction from '../utils/create-action';
-import { PRESENTATION_DELAY_TIME, REDUCED_DELAY_TIME } from '../constants';
+import {
+  PRESENTATION_DELAY_TIME,
+  REDUCED_DELAY_TIME,
+  NEXT_LEVEL_DELAY_TIME,
+} from '../constants';
 import sleep from '../utils/sleep';
 
 export const START_GAME = 'START_GAME';
@@ -48,7 +52,7 @@ const guessColor = payload => async (dispatch, getState) => {
 
   if (payload.succeeded && allGuessed) {
     dispatch(nextLevel());
-    await sleep(PRESENTATION_DELAY_TIME);
+    await sleep(NEXT_LEVEL_DELAY_TIME);
     dispatch(makePresentation());
   }
 }

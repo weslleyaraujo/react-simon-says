@@ -10,21 +10,21 @@ import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
 import { PRESENTATION_DELAY_TIME } from '../constants';
 import AbsoluteOnTop from '../components/AbsoluteOnTop';
-import * as audios from '../audios';
+import Player from './Player';
 import sleep from '../utils/sleep';
 
 const Blocks = {
   GreenBlock: ({ ...props }) => (
-    <Block m={1} color={colors.green} className="top-left" {...props} audio={audios.greenTone} />
+    <Block m={1} color={colors.green} className="top-left" {...props} />
   ),
   RedBlock: ({ ...props }) => (
-    <Block m={1} color={colors.red} className="top-right" {...props} audio={audios.redTone} />
+    <Block m={1} color={colors.red} className="top-right" {...props} />
   ),
   YellowBlock: ({ ...props }) => (
-    <Block m={1} color={colors.yellow} className="bottom-left" {...props} audio={audios.yellowTone} />
+    <Block m={1} color={colors.yellow} className="bottom-left" {...props} />
   ),
   BlueBlock: ({ ...props }) => (
-    <Block m={1} color={colors.blue} className="bottom-right" {...props} audio={audios.blueTone} />
+    <Block m={1} color={colors.blue} className="bottom-right" {...props} />
   ),
 }
 
@@ -94,6 +94,7 @@ class Board extends Component {
             )}
           </div>
         </AbsoluteOnTop>
+        <Player />
         <span style={{ pointerEvents: (presentation || gameOver) ? 'none' : 'initial' }}>
           {this.renderRow({ from: 0, to: 2 })}
           {this.renderRow({ from: 2, to: 4 })}
