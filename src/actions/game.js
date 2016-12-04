@@ -1,5 +1,5 @@
 import createAction from '../utils/create-action';
-import { PRESENTATION_DELAY_TIME } from '../constants';
+import { PRESENTATION_DELAY_TIME, REDUCED_DELAY_TIME } from '../constants';
 import sleep from '../utils/sleep';
 
 export const START_GAME = 'START_GAME';
@@ -33,11 +33,20 @@ const makePresentation = payload => async (dispatch, getState) => {
 
 
 const guessColor = payload => async (dispatch, getState) => {
+
   dispatch(guessColorSync(payload));
+  dispatch(startPresentation());
+  dispatch(lightenBlock({ id: payload.id }));
+  await sleep(REDUCED_DELAY_TIME);
+  dispatch(lightenOffBlock(REDUCED_DELAY_TIME));
+  await sleep(REDUCED_DELAY_TIME);
+  dispatch(finishPresentation());
+
   const { match } = getState();
   const { all, guessed } = match;
+  const allGuessed = (all.length === guessed.length);
 
-  if (payload.succeeded && (all.length === guessed.length)) {
+  if (payload.succeeded && allGuessed) {
     dispatch(nextLevel());
     await sleep(PRESENTATION_DELAY_TIME);
     dispatch(makePresentation());

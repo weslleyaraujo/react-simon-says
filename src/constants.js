@@ -13,4 +13,5 @@ export const ids = [
   'blue',
 ];
 
-export const PRESENTATION_DELAY_TIME = 500;
+export const PRESENTATION_DELAY_TIME = 300;
+export const REDUCED_DELAY_TIME = PRESENTATION_DELAY_TIME - 200;
