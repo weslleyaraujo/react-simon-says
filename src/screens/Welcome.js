@@ -8,6 +8,7 @@ import Shell from '../components/Shell';
 import AbsoluteOnTop from '../components/AbsoluteOnTop';
 import { ButtonLink } from '../components/Buttons';
 
+// TODO: add link to github repo
 class App extends Component {
   render() {
     return (
