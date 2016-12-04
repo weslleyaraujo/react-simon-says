@@ -21,7 +21,5 @@ const styles = `
   }
 `;
 
-export const Button = styled(({ children, onClick }) =>
-  <button onClick={onClick}>{children}</button>)`${styles}`;
-
+export const Button = styled.button`${styles}`
 export const ButtonLink = styled(Link)`${styles}`;

@@ -37,6 +37,7 @@ export default function game(state = initialState, action) {
       return {
         ...state,
         gameOver: !payload.succeeded,
+        highscore: state.score > state.highscore ? state.score : state.highscore,
       }
 
     default:

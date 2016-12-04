@@ -5,16 +5,27 @@ import { bindActionCreators } from 'redux';
 
 import Block from '../components/Block';
 import Shell from '../components/Shell';
+import { Button, ButtonLink } from '../components/Buttons';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
 import { PRESENTATION_DELAY_TIME } from '../constants';
+import AbsoluteOnTop from '../components/AbsoluteOnTop';
+import * as audios from '../audios';
 import sleep from '../utils/sleep';
 
 const Blocks = {
-  GreenBlock:   ({ ...props })  => <Block m={1} color={colors.green} className="top-left" {...props} />,
-  RedBlock:     ({ ...props })  => <Block m={1} color={colors.red} className="top-right" {...props} />,
-  YellowBlock:  ({ ...props })  => <Block m={1} color={colors.yellow} className="bottom-left" {...props} />,
-  BlueBlock:    ({ ...props })  => <Block m={1} color={colors.blue} className="bottom-right" {...props} />,
+  GreenBlock: ({ ...props }) => (
+    <Block m={1} color={colors.green} className="top-left" {...props} audio={audios.greenTone} />
+  ),
+  RedBlock: ({ ...props }) => (
+    <Block m={1} color={colors.red} className="top-right" {...props} audio={audios.redTone} />
+  ),
+  YellowBlock: ({ ...props }) => (
+    <Block m={1} color={colors.yellow} className="bottom-left" {...props} audio={audios.yellowTone} />
+  ),
+  BlueBlock: ({ ...props }) => (
+    <Block m={1} color={colors.blue} className="bottom-right" {...props} audio={audios.blueTone} />
+  ),
 }
 
 class Board extends Component {
@@ -61,12 +72,26 @@ class Board extends Component {
   }
 
   render() {
-    const { presentation, score, gameOver } = this.props.game;
+    const { presentation, score, gameOver, highscore } = this.props.game;
 
     return (
-      <Shell style={{ pointerEvents: (presentation || gameOver) ? 'none' : 'initial' }}>
-        {this.renderRow({ from: 0, to: 2 })}
-        {this.renderRow({ from: 2, to: 4 })}
+      <Shell>
+        <AbsoluteOnTop p={2} flex>
+          <div style={{ color: 'white' }}>
+            score: {score} <br />
+            high score: {highscore} <br />
+            {gameOver && (
+              <div>
+                <p>game over</p>
+                <Button>Try again</Button>
+              </div>
+            )}
+          </div>
+        </AbsoluteOnTop>
+        <span style={{ pointerEvents: (presentation || gameOver) ? 'none' : 'initial' }}>
+          {this.renderRow({ from: 0, to: 2 })}
+          {this.renderRow({ from: 2, to: 4 })}
+        </span>
       </Shell>
     );
   }

@@ -5,14 +5,8 @@ import GoOctoface from 'react-icons/lib/go/octoface';
 
 import Title from '../components/Title';
 import Shell from '../components/Shell';
+import AbsoluteOnTop from '../components/AbsoluteOnTop';
 import { ButtonLink } from '../components/Buttons';
-
-const AbsoluteOnTop = withReflex()(styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-`);
 
 class App extends Component {
   render() {

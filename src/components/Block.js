@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { withReflex } from 'reflexbox';
 import color from 'color';
@@ -15,18 +16,19 @@ const activeCSS = props => `
   ${transform}
 `;
 
-const Block = styled.div`
+const Pad = styled.div`
   width: 200px;
   height: 200px;
   box-sizing: border-box;
   background-color: ${({ color }) => color}
   cursor: pointer;
   animation: none;
-  transition: transform 0.3s;
+  transition: transform 0.3s background-color 0.5s;
   ${(props) => props.active ? activeCSS(props) : ''}
 
   &:active {
     background-color: ${({ color }) => lighten(color)}
+    ${activeCSS}
   }
 
   &:hover {
@@ -52,4 +54,4 @@ const Block = styled.div`
 
 `;
 
-export default withReflex()(Block);
+export default withReflex()(Pad);
