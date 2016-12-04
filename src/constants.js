@@ -15,4 +15,4 @@ export const ids = [
 
 export const PRESENTATION_DELAY_TIME = 200;
 export const REDUCED_DELAY_TIME = PRESENTATION_DELAY_TIME - 100;
-export const NEXT_LEVEL_DELAY_TIME = 350;
+export const NEXT_LEVEL_DELAY_TIME = 500;
