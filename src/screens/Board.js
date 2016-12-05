@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Flex, withReflex } from 'reflexbox';
+import { Flex } from 'reflexbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { bind as bindKey } from 'mousetrap';
 
 import Block from '../components/Block';
 import Shell from '../components/Shell';
+import CenterOverlay from '../components/CenterOverlay';
+import GrayScale from '../components/GrayScale';
+import AbsoluteOnTop from '../components/AbsoluteOnTop';
 import { Button } from '../components/Buttons';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
 import { PRESENTATION_DELAY_TIME } from '../constants';
-import AbsoluteOnTop from '../components/AbsoluteOnTop';
 import Player from './Player';
 import sleep from '../utils/sleep';
 
@@ -30,31 +31,12 @@ const Blocks = {
   ),
 }
 
-const AbsoluteCenter = withReflex()(styled.div`
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 4;
-  text-align: center;
-  background-color: rgba(0,0,0,0.9);
-  height: ${props => props.size}px;
-`);
-
-const GrayScale = styled.div`
-  transition: 0.7s;
-  ${props => !props.active ? `` : `
-    filter: grayscale(100%);
-  `}
-`;
-
 class Board extends Component {
 
   componentDidMount() {
     this.startMatch();
     const { actions } = this.props;
+
     bindKey(['1', 'd'], () =>
       actions.guessColor(this.getGuessPayload({ id: 'green' })));
 
@@ -137,14 +119,14 @@ class Board extends Component {
           </AbsoluteOnTop>
         }
         {gameOver &&
-          <AbsoluteCenter size={300} p={2}>
+          <CenterOverlay size={300} p={2}>
             <h3>you suck</h3>
             <p>SCORE: {score}</p>
             <p>HIGH SCORE: {highscore}</p>
             <Button onClick={this.startMatch.bind(this)}>Try again</Button>
-          </AbsoluteCenter>
+          </CenterOverlay>
         }
-        <GrayScale active={gameOver}>
+        <GrayScale disabled={!gameOver}>
           <span style={{ pointerEvents: (presentation || gameOver) ? 'none' : 'initial' }}>
             {this.renderRow({ from: 0, to: 2 })}
             {this.renderRow({ from: 2, to: 4 })}
