@@ -37,6 +37,10 @@ const makePresentation = payload => async (dispatch, getState) => {
 
 
 const guessColor = payload => async (dispatch, getState) => {
+  const { game } = getState();
+  if (game.gameOver) {
+    return;
+  }
 
   dispatch(guessColorSync(payload));
   dispatch(startPresentation());

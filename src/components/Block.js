@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import styled from 'styled-components';
 import { withReflex } from 'reflexbox';
 import color from 'color';

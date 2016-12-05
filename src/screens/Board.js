@@ -7,7 +7,7 @@ import { bind as bindKey } from 'mousetrap';
 
 import Block from '../components/Block';
 import Shell from '../components/Shell';
-import { Button, ButtonLink } from '../components/Buttons';
+import { Button } from '../components/Buttons';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
 import { PRESENTATION_DELAY_TIME } from '../constants';
@@ -128,25 +128,29 @@ class Board extends Component {
     const { presentation, score, gameOver, highscore } = this.props.game;
     return (
       <Shell>
-        <AbsoluteOnTop p={2} flex>
-          <div style={{ color: 'white' }}>
-            score: {score} <br />
-            high score: {highscore} <br />
-          </div>
-        </AbsoluteOnTop>
+        {!gameOver && 
+          <AbsoluteOnTop p={2} flex>
+            <div style={{ color: 'white' }}>
+              SCORE: {score} <br />
+              HIGH SCORE: {highscore} <br />
+            </div>
+          </AbsoluteOnTop>
+        }
         {gameOver &&
           <AbsoluteCenter size={300} p={2}>
-            <h3>game over</h3>
+            <h3>you suck</h3>
+            <p>SCORE: {score}</p>
+            <p>HIGH SCORE: {highscore}</p>
             <Button onClick={this.startMatch.bind(this)}>Try again</Button>
           </AbsoluteCenter>
         }
-        <Player />
         <GrayScale active={gameOver}>
           <span style={{ pointerEvents: (presentation || gameOver) ? 'none' : 'initial' }}>
             {this.renderRow({ from: 0, to: 2 })}
             {this.renderRow({ from: 2, to: 4 })}
           </span>
         </GrayScale>
+        <Player />
       </Shell>
     );
   }

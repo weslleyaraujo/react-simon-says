@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Flex, withReflex } from 'reflexbox';
+import { Flex } from 'reflexbox';
 import GoOctoface from 'react-icons/lib/go/octoface';
 
 import Title from '../components/Title';

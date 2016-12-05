@@ -28,7 +28,7 @@ const Title = ({ value }) =>
   (<Headline>{colorify({ colors, value })}</Headline>);
 
 Title.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.any.isRequired,
 };
 
 export default Title;
