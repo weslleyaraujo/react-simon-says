@@ -1,44 +1,17 @@
-# Simon
+# Stuff that needs to be done
 
-* state
+## Must
+ - Instead of presentation use "play/sing" or something related
+ - Rename blocks to "pad"
+ - Write tests (@mauriciosoares will do all of it!!!!)
+ - Add github pages package
+ - Write a nice readme
+ - Delete this file and its whole git history
+ - Make it public
+ - Deploy
+ - Share
 
-```
-  game: {
-    presentation: false,
-    score: 0,
-    highscore: 0,
-  },
-  blocks: [
-    {
-      component: 'RedBlock',
-      active: false,
-    },
-    {
-      component: 'RedBlock',
-      active: false,
-    },
-    {
-      component: 'RedBlock',
-      active: false,
-    },
-  ],
-  match: [
-    'red',
-    'blue',
-    'blue',
-  ],
-```
-* actions
-
-```
-START_GAME
-PRESS_COLOR ->
-  async action which will re-consult ?
-
-```
-
-
-## neon title
+## Ideas
 
 - Make title use `neon` helper, create a "smart" component with local state which from time to time will add a neon for each letter in a text
 creating a "domino" effect
