@@ -2,6 +2,7 @@
 
 ## Must
  - Instead of presentation use "play/sing" or something related
+ - Instead of "guess color sync" use something different
  - Rename blocks to "pad"
  - Write tests (@mauriciosoares will do all of it!!!!)
  - Add github pages package
