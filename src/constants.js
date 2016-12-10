@@ -4,6 +4,7 @@ export const colors = {
   green: '#2ECC40',
   yellow: '#FFDC00',
   white: 'white',
+  dark: '#1B1A1A',
 }
 
 export const ids = [

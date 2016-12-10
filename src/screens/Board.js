@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { Flex } from 'reflexbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -30,6 +31,31 @@ const Blocks = {
     <Block m={1} color={colors.blue} className="bottom-right" {...props} />
   ),
 }
+
+const Game = styled.div`
+  pointer-events: ${props => props.disbledPointer ? 'none' : 'initial'};
+  position: relative;
+`;
+
+const Score = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  background-color: ${colors.dark};
+  font-size: ${props => props.length <= 2 ? '62px' : '45px'};
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+  z-index: 2;
+  padding: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .8);
+  text-align: center;
+`;
 
 class Board extends Component {
 
@@ -113,7 +139,6 @@ class Board extends Component {
         {!gameOver && 
           <AbsoluteOnTop p={2} flex>
             <div style={{ color: 'white' }}>
-              SCORE: {score} <br />
               HIGH SCORE: {highscore} <br />
             </div>
           </AbsoluteOnTop>
@@ -127,10 +152,11 @@ class Board extends Component {
           </CenterOverlay>
         }
         <GrayScale disabled={!gameOver}>
-          <span style={{ pointerEvents: (presentation || gameOver) ? 'none' : 'initial' }}>
+          <Game disbledPointer={(presentation || gameOver)}>
             {this.renderRow({ from: 0, to: 2 })}
+            <Score length={score.toString().length}>{score}</Score>
             {this.renderRow({ from: 2, to: 4 })}
-          </span>
+          </Game>
         </GrayScale>
         <Player />
       </Shell>
