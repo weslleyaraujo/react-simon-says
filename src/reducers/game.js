@@ -1,13 +1,13 @@
 import {
-  START_PRESENTATION,
-  FINISH_PRESENTATION,
+  START_SONG,
+  FINISH_SONG,
   GUESS_COLOR,
   NEXT_LEVEL,
   START_GAME,
 } from '../actions/game';
 
 const initialState = {
-  presentation: true,
+  singing: true,
   gameOver: false,
   score: 0,
   highscore: 0,
@@ -23,16 +23,16 @@ export default function game(state = initialState, action) {
         score: 0,
       }
 
-    case START_PRESENTATION:
+    case START_SONG:
       return {
         ...state,
-        presentation: true,
+        singing: true,
       }
 
-    case FINISH_PRESENTATION:
+    case FINISH_SONG:
       return {
         ...state,
-        presentation: false,
+        singing: false,
       }
 
     case NEXT_LEVEL:

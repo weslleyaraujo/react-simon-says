@@ -12,7 +12,7 @@ import GrayScale from '../components/GrayScale';
 import { Button } from '../components/Buttons';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
-import { PRESENTATION_DELAY_TIME } from '../constants';
+import { SONG_DELAY_TIME } from '../constants';
 import Player from './Player';
 import sleep from '../utils/sleep';
 
@@ -87,7 +87,7 @@ class Board extends Component {
   startMatch() {
     const { actions} = this.props;
     actions.startGame();
-    sleep(PRESENTATION_DELAY_TIME).then(() => actions.makePresentation());
+    sleep(SONG_DELAY_TIME).then(() => actions.makeSong());
   }
 
   renderBlock({ block, index }) {
@@ -132,7 +132,7 @@ class Board extends Component {
   }
 
   render() {
-    const { presentation, score, gameOver, highscore } = this.props.game;
+    const { singing, score, gameOver, highscore } = this.props.game;
     return (
       <Shell>
         {gameOver &&
@@ -144,7 +144,7 @@ class Board extends Component {
           </CenterOverlay>
         }
         <GrayScale disabled={!gameOver}>
-          <Game disbledPointer={(presentation || gameOver)}>
+          <Game disbledPointer={(singing || gameOver)}>
             {this.renderRow({ from: 0, to: 2 })}
             <Score length={score.toString().length}>{score}</Score>
             {this.renderRow({ from: 2, to: 4 })}
