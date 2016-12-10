@@ -63,16 +63,16 @@ class Board extends Component {
     const { actions } = this.props;
 
     bindKey(['1', 'd'], () =>
-      actions.guessColor(this.getGuessPayload({ id: 'green' })));
+      actions.guess(this.getGuessPayload({ id: 'green' })));
 
     bindKey(['2', 'f'], () =>
-      actions.guessColor(this.getGuessPayload({ id: 'red' })));
+      actions.guess(this.getGuessPayload({ id: 'red' })));
 
     bindKey(['3', 'j'], () =>
-      actions.guessColor(this.getGuessPayload({ id: 'yellow' })));
+      actions.guess(this.getGuessPayload({ id: 'yellow' })));
 
     bindKey(['4', 'l'], () =>
-      actions.guessColor(this.getGuessPayload({ id: 'blue' })));
+      actions.guess(this.getGuessPayload({ id: 'blue' })));
 
     bindKey(['space'], this.onSpacePress.bind(this));
   }
@@ -87,7 +87,7 @@ class Board extends Component {
   startMatch() {
     const { actions} = this.props;
     actions.startGame();
-    sleep(SONG_DELAY_TIME).then(() => actions.makeSong());
+    sleep(SONG_DELAY_TIME).then(() => actions.sing());
   }
 
   renderBlock({ block, index }) {
@@ -115,7 +115,7 @@ class Board extends Component {
 
   onBlockClick({ id }) {
     const { actions } = this.props;
-    actions.guessColor(this.getGuessPayload({ id }));
+    actions.guess(this.getGuessPayload({ id }));
   }
 
   renderRow({ from, to }) {

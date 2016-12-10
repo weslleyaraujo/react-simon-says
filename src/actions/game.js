@@ -14,17 +14,17 @@ export const LIGHTEN_OFF_BLOCK = 'LIGHTEN_OFF_BLOCK';
 export const GUESS_COLOR = 'GUESS_COLOR';
 export const NEXT_LEVEL = 'NEXT_LEVEL';
 
-const guessColorSync = createAction(GUESS_COLOR);
+const startGame = createAction(START_GAME);
+const guessColor = createAction(GUESS_COLOR);
 const nextLevel = createAction(NEXT_LEVEL);
 const startSong = createAction(START_SONG);
 const finishSong = createAction(FINISH_SONG);
 const lightenBlock = createAction(LIGHTEN_BLOCK);
 const lightenOffBlock = createAction(LIGHTEN_OFF_BLOCK);
 
-const makeSong = payload => async (dispatch, getState) => {
+const sing = (payload) => async (dispatch, getState) => {
   dispatch(startSong());
   const { match } = getState();
-
   for (let id of match.all) {
     dispatch(lightenBlock({ id }));
     await sleep(SONG_DELAY_TIME);
@@ -36,13 +36,14 @@ const makeSong = payload => async (dispatch, getState) => {
 }
 
 
-const guessColor = payload => async (dispatch, getState) => {
+const guess = (payload) => async (dispatch, getState) => {
   const { game } = getState();
+
   if (game.gameOver) {
     return;
   }
 
-  dispatch(guessColorSync(payload));
+  dispatch(guessColor(payload));
   dispatch(startSong());
   dispatch(lightenBlock({ id: payload.id }));
   await sleep(REDUCED_DELAY_TIME);
@@ -57,17 +58,18 @@ const guessColor = payload => async (dispatch, getState) => {
   if (payload.succeeded && allGuessed) {
     dispatch(nextLevel());
     await sleep(NEXT_LEVEL_DELAY_TIME);
-    dispatch(makeSong());
+    dispatch(sing());
   }
 }
 
 export const actionCreators = {
-  startGame: createAction(START_GAME),
   startSong,
+  startGame,
   finishSong,
   lightenBlock,
   lightenOffBlock,
   nextLevel,
   guessColor,
-  makeSong,
+  guess,
+  sing,
 }
