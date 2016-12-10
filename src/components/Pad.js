@@ -25,6 +25,11 @@ const Pad = styled.div`
   transition: 0.2s;
   ${(props) => props.active ? activeCSS(props) : ''}
 
+  @media (max-width: 600px) {
+    width: 170px;
+    height: 170px;
+  }
+
   &:active {
     background-color: ${({ color }) => lighten(color)}
     ${activeCSS}

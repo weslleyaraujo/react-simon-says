@@ -1,8 +1,11 @@
 # Stuff that needs to be done
 
 ## Must
- - Write tests (@mauriciosoares will do all of it!!!!)
+ - Fix page title
  - Add github pages package
+ - Preload audios
+ - Make it look nice on mobile
+ - Write tests (@mauriciosoares will do all of it!!!!)
  - Write a nice readme
  - Delete this file and its whole git history
  - Make it public

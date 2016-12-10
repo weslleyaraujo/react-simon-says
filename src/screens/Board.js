@@ -124,9 +124,8 @@ class Board extends Component {
       <Shell>
         {gameOver &&
           <CenterOverlay size={300} p={2}>
-            <h3>you suck!</h3>
-            <h2>SCORE <span style={{ color: colors.red, }}>{score}</span></h2>
-            <h3>HIGH SCORE <span style={{ color: colors.blue, }}>{highscore}</span></h3>
+            <h2>SCORE {score}</h2>
+            <h3>HIGH SCORE {highscore}</h3>
             <Button onClick={this.startMatch.bind(this)}>Try again</Button>
           </CenterOverlay>
         }
