@@ -36,16 +36,10 @@ const sing = (payload) => async (dispatch, getState) => {
 }
 
 
-const guess = (payload) => async (dispatch, getState) => {
-  const { game } = getState();
-
-  if (game.gameOver) {
-    return;
-  }
-
-  dispatch(guessColor(payload));
+const guess = ({ succeeded, id }) => async (dispatch, getState) => {
+  dispatch(guessColor({ succeeded, id }));
   dispatch(startSong());
-  dispatch(lightenPad({ id: payload.id }));
+  dispatch(lightenPad({ id }));
   await sleep(REDUCED_DELAY_TIME);
   dispatch(lightenOffPad(REDUCED_DELAY_TIME));
   await sleep(REDUCED_DELAY_TIME);
@@ -53,9 +47,9 @@ const guess = (payload) => async (dispatch, getState) => {
 
   const { match } = getState();
   const { all, guessed } = match;
-  const allGuessed = (all.length === guessed.length);
+  const done = (all.length === guessed.length);
 
-  if (payload.succeeded && allGuessed) {
+  if (succeeded && done) {
     dispatch(nextLevel());
     await sleep(NEXT_LEVEL_DELAY_TIME);
     dispatch(sing());

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Flex } from 'reflexbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { bind as bindKey } from 'mousetrap';
 
 import Pad from '../components/Pad';
 import Shell from './Shell';
@@ -61,20 +60,6 @@ class Board extends Component {
   componentDidMount() {
     this.startMatch();
     const { actions } = this.props;
-
-    bindKey(['1', 'd'], () =>
-      actions.guess(this.getGuessPayload({ id: 'green' })));
-
-    bindKey(['2', 'f'], () =>
-      actions.guess(this.getGuessPayload({ id: 'red' })));
-
-    bindKey(['3', 'j'], () =>
-      actions.guess(this.getGuessPayload({ id: 'yellow' })));
-
-    bindKey(['4', 'l'], () =>
-      actions.guess(this.getGuessPayload({ id: 'blue' })));
-
-    bindKey(['space'], this.onSpacePress.bind(this));
   }
 
   onSpacePress() {
@@ -114,8 +99,10 @@ class Board extends Component {
   }
 
   onPadClick({ id }) {
-    const { actions } = this.props;
-    actions.guess(this.getGuessPayload({ id }));
+    const { actions, game } = this.props;
+    if (!game.gameOver) {
+      actions.guess(this.getGuessPayload({ id }));
+    }
   }
 
   renderRow({ from, to }) {
