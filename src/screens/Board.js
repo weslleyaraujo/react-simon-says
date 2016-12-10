@@ -6,10 +6,9 @@ import { bindActionCreators } from 'redux';
 import { bind as bindKey } from 'mousetrap';
 
 import Block from '../components/Block';
-import Shell from '../components/Shell';
+import Shell from './Shell';
 import CenterOverlay from '../components/CenterOverlay';
 import GrayScale from '../components/GrayScale';
-import AbsoluteOnTop from '../components/AbsoluteOnTop';
 import { Button } from '../components/Buttons';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
@@ -136,18 +135,11 @@ class Board extends Component {
     const { presentation, score, gameOver, highscore } = this.props.game;
     return (
       <Shell>
-        {!gameOver && 
-          <AbsoluteOnTop p={2} flex>
-            <div style={{ color: 'white' }}>
-              HIGH SCORE: {highscore} <br />
-            </div>
-          </AbsoluteOnTop>
-        }
         {gameOver &&
           <CenterOverlay size={300} p={2}>
-            <h3>you suck</h3>
-            <p>SCORE: {score}</p>
-            <p>HIGH SCORE: {highscore}</p>
+            <h3>you suck!</h3>
+            <h2>SCORE <span style={{ color: colors.red, }}>{score}</span></h2>
+            <h3>HIGH SCORE <span style={{ color: colors.blue, }}>{highscore}</span></h3>
             <Button onClick={this.startMatch.bind(this)}>Try again</Button>
           </CenterOverlay>
         }
