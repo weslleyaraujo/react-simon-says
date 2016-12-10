@@ -1,8 +1,6 @@
 # Stuff that needs to be done
 
 ## Must
- - Instead of "guess color sync" use something different
- - Rename blocks to "pad"
  - Write tests (@mauriciosoares will do all of it!!!!)
  - Add github pages package
  - Write a nice readme

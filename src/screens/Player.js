@@ -26,8 +26,8 @@ class Player extends Component {
   }
 }
 
-export default connect(({ blocks, game }) => {
-  const active = blocks.find(({ active }) => active);
+export default connect(({ pads, game }) => {
+  const active = pads.find(({ active }) => active);
   return {
     active: active ? active.id : null,
   }

@@ -1,38 +1,38 @@
-import { LIGHTEN_BLOCK, LIGHTEN_OFF_BLOCK } from '../actions/game';
+import { LIGHTEN_PAD, LIGHTEN_OFF_PAD } from '../actions/game';
 
 const initialState = [
   {
     id: 'green',
-    component: 'GreenBlock',
+    component: 'GreenPad',
     active: false,
   },
   {
     id: 'red',
-    component: 'RedBlock',
+    component: 'RedPad',
     active: false,
   },
   {
     id: 'yellow',
-    component: 'YellowBlock',
+    component: 'YellowPad',
     active: false,
   },
   {
     id: 'blue',
-    component: 'BlueBlock',
+    component: 'BluePad',
     active: false,
   },
 ];
 
-export default function blocks(state = initialState, action) {
+export default function pads(state = initialState, action) {
   const { type, payload } = action;
   switch(type) {
-    case LIGHTEN_BLOCK:
+    case LIGHTEN_PAD:
       return state.map(b => ({
         ...b,
         active: payload.id === b.id,
       }));
 
-    case LIGHTEN_OFF_BLOCK:
+    case LIGHTEN_OFF_PAD:
       return state.map(b => ({
         ...b,
         active: false,

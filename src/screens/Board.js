@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { bind as bindKey } from 'mousetrap';
 
-import Block from '../components/Block';
+import Pad from '../components/Pad';
 import Shell from './Shell';
 import CenterOverlay from '../components/CenterOverlay';
 import GrayScale from '../components/GrayScale';
@@ -16,18 +16,18 @@ import { SONG_DELAY_TIME } from '../constants';
 import Player from './Player';
 import sleep from '../utils/sleep';
 
-const Blocks = {
-  GreenBlock: ({ ...props }) => (
-    <Block m={1} color={colors.green} className="top-left" {...props} />
+const Pads = {
+  GreenPad: ({ ...props }) => (
+    <Pad m={1} color={colors.green} className="top-left" {...props} />
   ),
-  RedBlock: ({ ...props }) => (
-    <Block m={1} color={colors.red} className="top-right" {...props} />
+  RedPad: ({ ...props }) => (
+    <Pad m={1} color={colors.red} className="top-right" {...props} />
   ),
-  YellowBlock: ({ ...props }) => (
-    <Block m={1} color={colors.yellow} className="bottom-left" {...props} />
+  YellowPad: ({ ...props }) => (
+    <Pad m={1} color={colors.yellow} className="bottom-left" {...props} />
   ),
-  BlueBlock: ({ ...props }) => (
-    <Block m={1} color={colors.blue} className="bottom-right" {...props} />
+  BluePad: ({ ...props }) => (
+    <Pad m={1} color={colors.blue} className="bottom-right" {...props} />
   ),
 }
 
@@ -90,14 +90,14 @@ class Board extends Component {
     sleep(SONG_DELAY_TIME).then(() => actions.sing());
   }
 
-  renderBlock({ block, index }) {
-    const Comp = Blocks[block.component];
+  renderPad({ pad, index }) {
+    const Comp = Pads[pad.component];
     return (
       <Comp
-        {...block}
+        {...pad}
         key={index}
-        onClick={() => this.onBlockClick({
-          id: block.id,
+        onClick={() => this.onPadClick({
+          id: pad.id,
         })}
       />
     );
@@ -113,7 +113,7 @@ class Board extends Component {
     }
   }
 
-  onBlockClick({ id }) {
+  onPadClick({ id }) {
     const { actions } = this.props;
     actions.guess(this.getGuessPayload({ id }));
   }
@@ -124,8 +124,8 @@ class Board extends Component {
         align="center"
         justify="center"
       >
-        {this.props.blocks.slice(from, to).map((block, index) =>
-          this.renderBlock({ block, index }))
+        {this.props.pads.slice(from, to).map((pad, index) =>
+          this.renderPad({ pad, index }))
         }
       </Flex>
     )

@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 
-import blocks from './blocks';
+import pads from './pads';
 import game from './game';
 import match from './match';
 
 export default combineReducers({
-  blocks,
+  pads,
   game,
   match,
   routing,
