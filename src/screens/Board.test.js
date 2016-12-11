@@ -1,0 +1,54 @@
+import React, { Component } from 'react';
+import { mount, shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import toJson from 'enzyme-to-json';
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk';
+
+import { actionCreators as actions } from '../actions/game'
+import reducer from '../reducers';
+import { Board } from './Board';
+
+window.matchMedia = _ => ({
+  matches: [],
+  addListener: () => {},
+  removeListener: () => {}
+});
+
+const state = reducer({}, {});
+const createStore = configureMockStore([thunk]);
+
+var mockSleep;
+jest.mock('../utils/sleep.js', () => {
+  mockSleep = jest.fn();
+  return () => ({
+    then: mockSleep,
+  })
+});
+
+beforeEach(() => {
+  mockSleep.mockClear();
+});
+
+
+it('renders Board correctly', () => {
+  const wrapper = shallow(
+    <Board {...state} />
+  );
+  expect(toJson(wrapper)).toMatchSnapshot();
+});
+
+
+it('calls startGame', () => {
+  const store = createStore(state);
+  actions.startGame = jest.fn();
+  actions.sing = jest.fn();
+  const wrapper = mount(
+    <Provider store={store}>
+      <Board {...state} actions={actions} />
+    </Provider>
+  );
+
+  expect(mockSleep).toHaveBeenCalled();
+  expect(actions.startGame).toHaveBeenCalled();
+});
