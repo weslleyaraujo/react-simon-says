@@ -3,33 +3,17 @@ import { Flex } from 'reflexbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Pad from '../components/Pad';
 import Game from '../components/Game';
 import Score from '../components/Score';
+import Pads from '../components/Pads';
 import Shell from './Shell';
 import CenterOverlay from '../components/CenterOverlay';
 import GrayScale from '../components/GrayScale';
 import { Button } from '../components/Buttons';
-import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
 import { SONG_DELAY_TIME, NEXT_LEVEL_DELAY_TIME } from '../constants';
 import Player from './Player';
 import sleep from '../utils/sleep';
-
-const Pads = {
-  GreenPad: ({ ...props }) => (
-    <Pad m={1} color={colors.green} className="top-left" {...props} />
-  ),
-  RedPad: ({ ...props }) => (
-    <Pad m={1} color={colors.red} className="top-right" {...props} />
-  ),
-  YellowPad: ({ ...props }) => (
-    <Pad m={1} color={colors.yellow} className="bottom-left" {...props} />
-  ),
-  BluePad: ({ ...props }) => (
-    <Pad m={1} color={colors.blue} className="bottom-right" {...props} />
-  ),
-}
 
 export class Board extends Component {
 
@@ -41,19 +25,6 @@ export class Board extends Component {
     const { actions} = this.props;
     actions.startGame();
     sleep(SONG_DELAY_TIME).then(() => actions.sing());
-  }
-
-  renderPad({ pad, index }) {
-    const Comp = Pads[pad.component];
-    return (
-      <Comp
-        {...pad}
-        key={index}
-        onClick={() => this.onPadClick({
-          id: pad.id,
-        })}
-      />
-    );
   }
 
   onPadClick({ id }) {
@@ -73,19 +44,6 @@ export class Board extends Component {
     }
   }
 
-  renderRow({ from, to }) {
-    return (
-      <Flex
-        align="center"
-        justify="center"
-      >
-        {this.props.pads.slice(from, to).map((pad, index) =>
-          this.renderPad({ pad, index }))
-        }
-      </Flex>
-    )
-  }
-
   render() {
     const { singing, score, gameOver, highscore } = this.props.game;
     return (
@@ -99,9 +57,23 @@ export class Board extends Component {
         }
         <GrayScale disabled={!gameOver}>
           <Game disbledPointer={(singing || gameOver)}>
-            {this.renderRow({ from: 0, to: 2 })}
+            <Flex
+              align="center"
+              justify="center"
+            >
+              {this.props.pads.slice(0, 2).map((pad, i) => (
+                <Pads key={i} pad={pad} onClick={_ => this.onPadClick({ id: pad.id })} />
+              ))}
+            </Flex>
             <Score length={score.toString().length}>{score}</Score>
-            {this.renderRow({ from: 2, to: 4 })}
+            <Flex
+              align="center"
+              justify="center"
+            >
+              {this.props.pads.slice(2, 4).map((pad, i) => (
+                <Pads key={i} pad={pad} onClick={_ => this.onPadClick({ id: pad.id })} />
+              ))}
+            </Flex>
           </Game>
         </GrayScale>
         <Player />

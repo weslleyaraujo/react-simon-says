@@ -1,0 +1,12 @@
+exports[`test renders Pads correctly 1`] = `
+<div>
+  <Pads
+    pad="GreenPad" />
+  <Pads
+    pad="RedPad" />
+  <Pads
+    pad="YellowPad" />
+  <Pads
+    pad="BluePad" />
+</div>
+`;
