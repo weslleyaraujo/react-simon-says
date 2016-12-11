@@ -13,7 +13,7 @@ You can play it [here](https://weslleyaraujo.github.io/react-simon-says/)
 
 The app was build with [redux](https://github.com/reactjs/redux) so it was quite simple to manage the data flow using [`async`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) functions together with [redux-thunk](https://github.com/gaearon/redux-thunk)
 
-tl;dr async functions with thunks plays really nice together :heart:
+> tl;dr thunks and `async` functions play nice together :heart:
 
 ```js
 const foo = payload => async dispatch => {
