@@ -1,10 +1,10 @@
+import sleep from '../utils/sleep';
 import createAction from '../utils/create-action';
 import {
   SONG_DELAY_TIME,
   REDUCED_DELAY_TIME,
   NEXT_LEVEL_DELAY_TIME,
 } from '../constants';
-import sleep from '../utils/sleep';
 
 export const START_GAME = 'START_GAME';
 export const START_SONG = 'START_SONG';
