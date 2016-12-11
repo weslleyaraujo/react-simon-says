@@ -1,0 +1,16 @@
+exports[`test renders Player correctly 1`] = `
+<div>
+  <audio
+    preload="auto"
+    src="blue.mp3" />
+  <audio
+    preload="auto"
+    src="green.mp3" />
+  <audio
+    preload="auto"
+    src="red.mp3" />
+  <audio
+    preload="auto"
+    src="yellow.mp3" />
+</div>
+`;
