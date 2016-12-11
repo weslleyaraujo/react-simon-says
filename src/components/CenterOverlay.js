@@ -11,7 +11,7 @@ const CenterOverlay = withReflex()(styled.div`
   z-index: 4;
   text-align: center;
   background-color: rgba(0,0,0,0.9);
-  height: ${props => props.size || 300}px;
+  height: 250px;
 `);
 
 

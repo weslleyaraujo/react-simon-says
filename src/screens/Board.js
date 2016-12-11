@@ -59,7 +59,6 @@ class Board extends Component {
 
   componentDidMount() {
     this.startMatch();
-    const { actions } = this.props;
   }
 
   onSpacePress() {
@@ -123,7 +122,7 @@ class Board extends Component {
     return (
       <Shell>
         {gameOver &&
-          <CenterOverlay size={300} p={2}>
+          <CenterOverlay p={2}>
             <h2>SCORE {score}</h2>
             <h3>HIGH SCORE {highscore}</h3>
             <Button onClick={this.startMatch.bind(this)}>Try again</Button>
