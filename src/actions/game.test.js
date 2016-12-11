@@ -37,7 +37,7 @@ describe('game actions', () => {
       .catch(e => console.log(`Error while testing sing: ${e}`))
   });
 
-  it('dispatch proper actions on guess', done => {
+  it('dispatch proper actions on guess and responds as false', done => {
     const payload = {
       succeeded: false,
       id: 'blue',
@@ -56,14 +56,15 @@ describe('game actions', () => {
     ];
 
     store.dispatch(actions.guess(payload))
-      .then(x => {
+      .then(response => {
         expect(store.getActions()).toEqual(expected);
+        expect(response.done).toBe(false);
         done();
       })
       .catch(e => console.log(`Error while testing sing: ${e}`))
   });
 
-  it('dispatch proper actions on guess and move to next level', done => {
+  it('dispatch proper actions on guess and responds as true', done => {
     const id = 'blue';
     const payload = {
       succeeded: true,
@@ -94,10 +95,11 @@ describe('game actions', () => {
     ];
 
     store.dispatch(actions.guess(payload))
-      .then(x => {
+      .then(response => {
         expect(store.getActions()).toEqual(expected);
+        expect(response.done).toBe(true);
         done();
       })
-      .catch(e => console.log(`Error while testing sing: ${e}`))
+      .catch(e => console.log(`Error while testing guess: ${e}`))
   });
 });
