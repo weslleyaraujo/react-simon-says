@@ -1,9 +1,6 @@
-import { ids } from '../constants';
 import { START_GAME, GUESS_COLOR, NEXT_LEVEL } from '../actions/game';
 
-const random =  () => ids[Math.floor(Math.random() * ids.length)];
-
-const initialState = {
+export const initialState = {
   guessed: [],
   all: [],
 }
@@ -15,14 +12,14 @@ export default function blocks(state = initialState, action) {
       return {
         guessed: [],
         all: [
-          random(),
+          payload.next,
         ],
       }
 
     case NEXT_LEVEL:
       return {
         guessed: [],
-        all: state.all.concat(random()),
+        all: state.all.concat(payload.next),
       }
 
     case GUESS_COLOR:

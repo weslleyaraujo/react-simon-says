@@ -1,4 +1,5 @@
 import sleep from '../utils/sleep';
+import getRandomId from '../utils/get-random-id';
 import createAction from '../utils/create-action';
 import {
   SONG_DELAY_TIME,
@@ -14,9 +15,13 @@ export const LIGHTEN_OFF_PAD = 'LIGHTEN_OFF_PAD';
 export const GUESS_COLOR = 'GUESS_COLOR';
 export const NEXT_LEVEL = 'NEXT_LEVEL';
 
-const startGame = createAction(START_GAME);
+const start = createAction(START_GAME);
+const next = createAction(NEXT_LEVEL);
+
+const startGame = payload => start({ next: getRandomId() });
+const nextLevel = payload => next({ next: getRandomId() });
+
 const guessColor = createAction(GUESS_COLOR);
-const nextLevel = createAction(NEXT_LEVEL);
 const startSong = createAction(START_SONG);
 const finishSong = createAction(FINISH_SONG);
 const lightenPad = createAction(LIGHTEN_PAD);
