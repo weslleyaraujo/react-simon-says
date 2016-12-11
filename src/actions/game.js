@@ -25,7 +25,8 @@ const lightenOffPad = createAction(LIGHTEN_OFF_PAD);
 const sing = (payload) => async (dispatch, getState) => {
   dispatch(startSong());
   const { match } = getState();
-  for (let id of match.all) {
+  for (let i = 0; i <= match.all.length - 1; i++) {
+    const id = match.all[i];
     dispatch(lightenPad({ id }));
     await sleep(SONG_DELAY_TIME);
     dispatch(lightenOffPad());
@@ -41,7 +42,7 @@ const guess = ({ succeeded, id }) => async (dispatch, getState) => {
   dispatch(startSong());
   dispatch(lightenPad({ id }));
   await sleep(REDUCED_DELAY_TIME);
-  dispatch(lightenOffPad(REDUCED_DELAY_TIME));
+  dispatch(lightenOffPad());
   await sleep(REDUCED_DELAY_TIME);
   dispatch(finishSong());
 
@@ -49,11 +50,7 @@ const guess = ({ succeeded, id }) => async (dispatch, getState) => {
   const { all, guessed } = match;
   const done = (all.length === guessed.length);
 
-  if (succeeded && done) {
-    dispatch(nextLevel());
-    await sleep(NEXT_LEVEL_DELAY_TIME);
-    dispatch(sing());
-  }
+  return new Promise(r => r({ done: succeeded && done }));
 }
 
 export const actionCreators = {

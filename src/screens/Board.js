@@ -11,7 +11,7 @@ import GrayScale from '../components/GrayScale';
 import { Button } from '../components/Buttons';
 import { colors } from '../constants';
 import { actionCreators } from '../actions/game';
-import { SONG_DELAY_TIME } from '../constants';
+import { SONG_DELAY_TIME, NEXT_LEVEL_DELAY_TIME } from '../constants';
 import Player from './Player';
 import sleep from '../utils/sleep';
 
@@ -87,20 +87,20 @@ class Board extends Component {
     );
   }
 
-  getGuessPayload({ id }) {
-    const { match } = this.props;
+  onPadClick({ id }) {
+    const { actions, game, match } = this.props;
     const tail = match.guessed.length;
     const succeeded = match.all[tail] === id;
-    return {
-      id,
-      succeeded,
-    }
-  }
 
-  onPadClick({ id }) {
-    const { actions, game } = this.props;
     if (!game.gameOver) {
-      actions.guess(this.getGuessPayload({ id }));
+      actions.guess({ id, succeeded })
+        .then(async ({ done }) => {
+          if (done) {
+            actions.nextLevel();
+            await sleep(NEXT_LEVEL_DELAY_TIME);
+            actions.sing();
+          }
+        });
     }
   }
 

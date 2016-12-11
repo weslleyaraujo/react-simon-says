@@ -1,15 +1,9 @@
 # Stuff that needs to be done
 
 ## Must
- - Add github pages package
  - Write tests (@mauriciosoares will do all of it!!!!)
- - Write a nice readme
+ - Add code coverage/climate
  - Delete this file and its whole git history
  - Make it public
  - Deploy
  - Share
-
-## Ideas
-
-- Make title use `neon` helper, create a "smart" component with local state which from time to time will add a neon for each letter in a text
-creating a "domino" effect
