@@ -1,6 +1,6 @@
 import { LIGHTEN_PAD, LIGHTEN_OFF_PAD } from '../actions/game';
 
-const initialState = [
+export const initialState = [
   {
     id: 'green',
     component: 'GreenPad',

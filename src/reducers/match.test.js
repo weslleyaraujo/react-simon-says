@@ -1,4 +1,3 @@
-
 import reducer, { initialState } from './match';
 import {
   START_SONG,
