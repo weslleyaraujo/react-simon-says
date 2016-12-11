@@ -1,4 +1,4 @@
-exports[`test renders Button correctly 1`] = `
+exports[`test renders Shell correctly 1`] = `
 <Flex
   align="center"
   justify="center"

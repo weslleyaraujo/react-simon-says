@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 
 import { Shell } from './Shell';
 
-it('renders Button correctly', () => {
+it('renders Shell correctly', () => {
   const wrapper = shallow(
     <Shell />
   );

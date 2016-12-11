@@ -1,4 +1,4 @@
-exports[`test renders Button correctly 1`] = `
+exports[`test renders Welcome correctly 1`] = `
 <Connect(Shell)>
   <Title
     value="REACT SIMON" />

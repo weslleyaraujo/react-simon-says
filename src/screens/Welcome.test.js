@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 
 import Welcome from './Welcome';
 
-it('renders Button correctly', () => {
+it('renders Welcome correctly', () => {
   const wrapper = shallow(
     <Welcome />
   );
