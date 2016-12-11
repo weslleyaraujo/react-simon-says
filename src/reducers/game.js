@@ -6,7 +6,7 @@ import {
   START_GAME,
 } from '../actions/game';
 
-const initialState = {
+export const initialState = {
   singing: true,
   gameOver: false,
   score: 0,
