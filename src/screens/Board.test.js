@@ -39,7 +39,7 @@ it('renders Board correctly', () => {
 });
 
 
-it('calls startGame', () => {
+it('calls startGame after sleep', () => {
   const store = createStore(state);
   actions.startGame = jest.fn();
   actions.sing = jest.fn();
@@ -51,4 +51,19 @@ it('calls startGame', () => {
 
   expect(mockSleep).toHaveBeenCalled();
   expect(actions.startGame).toHaveBeenCalled();
+});
+
+it('calls guess after click on Pad', done => {
+  const store = createStore(state);
+  actions.guess = jest.fn(() => ({ then: done }));
+
+  const wrapper = mount(
+    <Provider store={store}>
+      <Board {...state} actions={actions} />
+    </Provider>
+  );
+
+  // NOTE: .top-left === green pad
+  wrapper.find('.top-left').simulate('click');
+  expect(actions.guess).toHaveBeenCalledWith({ id: 'green' });
 });
