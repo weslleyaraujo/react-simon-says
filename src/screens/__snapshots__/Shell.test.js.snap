@@ -1,0 +1,32 @@
+exports[`test renders Button correctly 1`] = `
+<Flex
+  align="center"
+  justify="center"
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }>
+  <ReflexWrap
+    flex={true}
+    justify="space-between"
+    p={2}>
+    <Box>
+      HIGH SCORE: 
+       
+      <br />
+    </Box>
+    <Box>
+      <a
+        href="https://github.com/weslleyaraujo/react-simon/"
+        target="_blank">
+        <GoOctoface
+          color="white"
+          size={40} />
+      </a>
+    </Box>
+  </ReflexWrap>
+  <Box />
+</Flex>
+`;

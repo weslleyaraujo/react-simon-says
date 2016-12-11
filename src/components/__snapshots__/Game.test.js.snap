@@ -1,0 +1,9 @@
+exports[`test renders correctly 1`] = `
+<div
+  className="hmSEdC" />
+`;
+
+exports[`test renders correctly when disabledPointer 1`] = `
+<div
+  className="hmSEdC" />
+`;

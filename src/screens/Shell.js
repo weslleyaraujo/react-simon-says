@@ -6,7 +6,7 @@ import { REPO_URL } from '../constants';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 
-class Shell extends Component {
+export class Shell extends Component {
   render() {
     const { highscore, style, children } = this.props;
     return (

@@ -1,0 +1,13 @@
+exports[`test renders Button correctly 1`] = `
+<Connect(Shell)>
+  <Title
+    value="REACT SIMON" />
+  <Flex
+    justify="center">
+    <Styled(Link)
+      to="/board">
+      Play
+    </Styled(Link)>
+  </Flex>
+</Connect(Shell)>
+`;

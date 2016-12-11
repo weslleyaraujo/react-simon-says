@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import audios from '../audios';
 import { connect } from 'react-redux';
 
-class Player extends Component {
+export class Player extends Component {
 
   componentDidUpdate() {
     const { active } = this.props;
