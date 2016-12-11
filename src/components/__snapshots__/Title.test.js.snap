@@ -1,0 +1,62 @@
+exports[`test renders correctly 1`] = `
+<styled.h1>
+  <span>
+    <span
+      style={
+        Object {
+          "color": "#FF4136",
+        }
+      }>
+      f
+    </span>
+    <span
+      style={
+        Object {
+          "color": "#0074D9",
+        }
+      }>
+      o
+    </span>
+    <span
+      style={
+        Object {
+          "color": "#2ECC40",
+        }
+      }>
+      o
+    </span>
+    <span
+      style={
+        Object {
+          "color": "#FFDC00",
+        }
+      }>
+       
+    </span>
+    <span
+      style={
+        Object {
+          "color": "white",
+        }
+      }>
+      b
+    </span>
+    <span
+      style={
+        Object {
+          "color": "#1B1A1A",
+        }
+      }>
+      a
+    </span>
+    <span
+      style={
+        Object {
+          "color": "#FF4136",
+        }
+      }>
+      r
+    </span>
+  </span>
+</styled.h1>
+`;

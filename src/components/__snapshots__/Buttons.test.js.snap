@@ -1,0 +1,15 @@
+exports[`test renders Button correctly 1`] = `
+<button
+  className="bzjSVi">
+  foo bar
+</button>
+`;
+
+exports[`test renders ButtonLink correctly 1`] = `
+<Link
+  className="bzjSVi"
+  onlyActiveOnIndex={false}
+  style={Object {}}>
+  foo bar
+</Link>
+`;

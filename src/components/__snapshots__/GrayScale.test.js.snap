@@ -1,0 +1,10 @@
+exports[`test renders correctly 1`] = `
+<div
+  className="heKzYt" />
+`;
+
+exports[`test renders correctly when disabled 1`] = `
+<div
+  className="jmlCCS"
+  disabled={true} />
+`;

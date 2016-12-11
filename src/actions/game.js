@@ -4,7 +4,6 @@ import createAction from '../utils/create-action';
 import {
   SONG_DELAY_TIME,
   REDUCED_DELAY_TIME,
-  NEXT_LEVEL_DELAY_TIME,
 } from '../constants';
 
 export const START_GAME = 'START_GAME';

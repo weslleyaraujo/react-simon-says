@@ -1,0 +1,14 @@
+exports[`test renders correctly 1`] = `
+<WrappedComponent
+  col={null}
+  color="red"
+  style={null} />
+`;
+
+exports[`test renders correctly when active 1`] = `
+<WrappedComponent
+  active={true}
+  col={null}
+  color="red"
+  style={null} />
+`;
