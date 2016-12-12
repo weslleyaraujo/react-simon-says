@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route, Router, browserHistory } from 'react-router';
+import { Route, Router, browserHistory, Redirect } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import Welcome from './screens/Welcome';
@@ -14,6 +14,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history} >
+      <Redirect from="/" to="/react-simon-says/" />
       <Route path="/react-simon-says/" component={Welcome}  />
       <Route path="/react-simon-says/board/" component={Board} />
     </Router>
