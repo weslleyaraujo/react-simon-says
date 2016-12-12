@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route, Router, browserHistory, Redirect } from 'react-router';
+import { Route, Router, hashHistory, Redirect } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import Welcome from './screens/Welcome';
@@ -9,7 +9,7 @@ import Board from './screens/Board';
 import store from './store';
 import './index.css';
 
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
