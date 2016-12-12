@@ -14,9 +14,8 @@ const history = syncHistoryWithStore(hashHistory, store);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history} >
-      <Redirect from="/" to="/react-simon-says/" />
-      <Route path="/react-simon-says/" component={Welcome}  />
-      <Route path="/react-simon-says/board/" component={Board} />
+      <Route path="/" component={Welcome}  />
+      <Route path="/board/" component={Board} />
     </Router>
   </Provider>,
   document.getElementById('root')

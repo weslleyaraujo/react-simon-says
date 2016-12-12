@@ -9,7 +9,7 @@ const Welcome = () => (
   <Shell>
     <Title value="REACT SIMON" />
     <Flex justify="center">
-      <ButtonLink to="/react-simon-says/board/">Play</ButtonLink>
+      <ButtonLink to="/board/">Play</ButtonLink>
     </Flex>
   </Shell>
 );
