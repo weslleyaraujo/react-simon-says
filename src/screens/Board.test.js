@@ -8,6 +8,8 @@ import thunk from 'redux-thunk';
 import { actionCreators as actions } from '../actions/game'
 import reducer from '../reducers';
 import { Board } from './Board';
+import { SONG_DELAY_TIME, NEXT_LEVEL_DELAY_TIME } from '../constants';
+import sleep from '../utils/sleep';
 
 window.matchMedia = _ => ({
   matches: [],
@@ -39,7 +41,7 @@ it('renders Board correctly', () => {
 });
 
 
-it('calls startGame after sleep', () => {
+it('calls startGame after sleep', done => {
   const store = createStore(state);
   actions.startGame = jest.fn();
   actions.sing = jest.fn();
@@ -51,6 +53,10 @@ it('calls startGame after sleep', () => {
 
   expect(mockSleep).toHaveBeenCalled();
   expect(actions.startGame).toHaveBeenCalled();
+  setTimeout(() => {
+    done()
+    expect(actions.sing).toHaveBeenCalled()
+  }, SONG_DELAY_TIME);
 });
 
 it('calls guess after click on Pad', done => {
