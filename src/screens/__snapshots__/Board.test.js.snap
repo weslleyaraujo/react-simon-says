@@ -7,7 +7,7 @@ exports[`test renders Board correctly 1`] = `
       <Flex
         align="center"
         justify="center">
-        <Pads
+        <Component
           onClick={[Function]}
           pad={
             Object {
@@ -16,7 +16,7 @@ exports[`test renders Board correctly 1`] = `
               "id": "green",
             }
           } />
-        <Pads
+        <Component
           onClick={[Function]}
           pad={
             Object {
@@ -31,7 +31,7 @@ exports[`test renders Board correctly 1`] = `
       <Flex
         align="center"
         justify="center">
-        <Pads
+        <Component
           onClick={[Function]}
           pad={
             Object {
@@ -40,7 +40,7 @@ exports[`test renders Board correctly 1`] = `
               "id": "yellow",
             }
           } />
-        <Pads
+        <Component
           onClick={[Function]}
           pad={
             Object {
