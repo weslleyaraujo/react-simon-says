@@ -1,12 +1,12 @@
 exports[`test renders Pads correctly 1`] = `
 <div>
-  <Component
+  <Pads
     pad="GreenPad" />
-  <Component
+  <Pads
     pad="RedPad" />
-  <Component
+  <Pads
     pad="YellowPad" />
-  <Component
+  <Pads
     pad="BluePad" />
 </div>
 `;
