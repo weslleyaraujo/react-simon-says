@@ -52,9 +52,9 @@ const guess = ({ succeeded, id }) => async (dispatch, getState) => {
 
   const { match } = getState();
   const { all, guessed } = match;
-  const done = (all.length === guessed.length);
+  const done = (all.length === guessed.length) && succeeded;
 
-  return new Promise(r => r({ done: succeeded && done }));
+  return new Promise(r => r({ done }));
 }
 
 export const actionCreators = {
