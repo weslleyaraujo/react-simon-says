@@ -1,5 +1,7 @@
 > This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+[Blogpost](https://medium.com/@_weslleyaraujo/building-a-simons-says-game-with-react-redux-e950bfda90f1#.m3b9ur213) on how and why's I built this app
+
 # React Simon Says
 
 ![React Simon Says](./screenshot.png)
