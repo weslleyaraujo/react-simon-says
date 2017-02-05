@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "coveralls": "^2.11.15",
     "enzyme": "^2.6.0",
     "enzyme-to-json": "^1.4.4",
     "gh-pages": "^0.12.0",
