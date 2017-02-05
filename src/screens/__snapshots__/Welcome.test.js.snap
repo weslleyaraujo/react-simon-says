@@ -1,6 +1,6 @@
 exports[`test renders Welcome correctly 1`] = `
 <Connect(Shell)>
-  <Title
+  <Component
     value="REACT SIMON" />
   <Flex
     justify="center">
