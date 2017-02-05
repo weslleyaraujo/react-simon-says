@@ -33,6 +33,20 @@ $ npm install
 $ npm start
 ```
 
+### Specs
+
+I am using [Jest](https://facebook.github.io/jest/) as my spec runner, you can run it using:
+
+```
+$ npm test
+```
+
+and to get a coverage overview:
+
+```
+$ npm test -- --coverage
+```
+
 ### Contributing
 
 Changes and improvements are more than welcome! Feel free to fork and open a pull request. Please make your changes in a specific branch and request to pull into master! If you can, please make sure the game fully works before sending the PR, as that will help speed up the process.
