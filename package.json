@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --report=lcov",
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build"
   }
