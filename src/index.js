@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route, Router, hashHistory, Redirect } from 'react-router';
+import { Route, Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import Welcome from './screens/Welcome';
