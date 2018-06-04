@@ -5,8 +5,8 @@
   "background_color": "#1B1A1A",
   "display": "fullscreen",
   "orientation": "portrait",
-  "Scope": "/",
-  "start_url": "/",
+  "Scope": "/react-simon-says",
+  "start_url": "/react-simon-says",
   "icons": [
     {
       "src": "https://weslleyaraujo.github.io/react-simon-says/icons/icon-72x72.png",
