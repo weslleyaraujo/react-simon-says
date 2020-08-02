@@ -1,29 +1,29 @@
-import styled from 'styled-components';
-import { withReflex } from 'reflexbox';
-import color from 'color';
-import createNeonAnimation from '../utils/create-neon-animation';
+import styled from "styled-components";
+import color from "color";
+import createNeonAnimation from "../utils/create-neon-animation";
+import { Box } from "reflexbox";
 
 const transform = `
   transform: scale(1.02);
-`
+`;
 
-const lighten = from => color(from).lighten(0.333).hexString();
+const lighten = (from) => color(from).lighten(0.333).hex();
 
-const activeCSS = props => `
+const activeCSS = (props) => `
   background-color: ${lighten(props.color)} !important;
-  animation: ${createNeonAnimation(props.color)} 0.5s linear;
+  animation: foo;
   ${transform}
 `;
 
-const Pad = styled.div`
+const Pad = styled(Box)`
   width: 200px;
   height: 200px;
   box-sizing: border-box;
-  background-color: ${({ color }) => color}
+  background-color: ${({ color }) => color};
   cursor: pointer;
   animation: none;
   transition: 0.2s;
-  ${(props) => props.active ? activeCSS(props) : ''}
+  ${(props) => (props.active ? activeCSS(props) : "")}
 
   @media (max-width: 600px) {
     width: 170px;
@@ -31,8 +31,7 @@ const Pad = styled.div`
   }
 
   &:active {
-    background-color: ${({ color }) => lighten(color)}
-    ${activeCSS}
+    background-color: ${({ color }) => lighten(color)} ${activeCSS};
   }
 
   &:hover {
@@ -55,7 +54,6 @@ const Pad = styled.div`
   &.bottom-right {
     border-radius: 20px 20px 320px 20px;
   }
-
 `;
 
-export default withReflex()(Pad);
+export default Pad;

@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
-import styled from 'styled-components';
-import { colors } from '../constants';
+import React from "react";
+import styled from "styled-components";
+import { colors } from "../constants";
 
 const Headline = styled.h1`
-  color: #FFF;
+  color: #fff;
   font-size: 5em;
   text-align: center;
 `;
@@ -14,21 +14,16 @@ const colorify = ({ colors, value }) => {
   const letters = [...Array(Math.floor(value.length / size))]
     .reduce((acc, n) => [...acc, ...list], [])
     .concat(list.slice(0, list.length % size))
-    .map(x => colors[x])
+    .map((x) => colors[x])
     .map((color, i) => (
-      <span key={i} style={{ color }}>{value[i]}</span>
+      <span key={i} style={{ color }}>
+        {value[i]}
+      </span>
     ));
 
-  return (
-    <span>{letters}</span>
-  );
-}
-
-const Title = ({ value }) =>
-  (<Headline>{colorify({ colors, value })}</Headline>);
-
-Title.propTypes = {
-  value: PropTypes.any.isRequired,
+  return <span>{letters}</span>;
 };
+
+const Title = ({ value }) => <Headline>{colorify({ colors, value })}</Headline>;
 
 export default Title;

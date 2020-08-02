@@ -1,21 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { Route, Router, hashHistory } from "react-router";
-import { syncHistoryWithStore } from "react-router-redux";
-import registerServiceWorker from "./registerServiceWorker";
-import Welcome from "./screens/Welcome";
-import Board from "./screens/Board";
-import store from "./store";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "./index.css";
-
-const history = syncHistoryWithStore(hashHistory, store);
+import registerServiceWorker from "./registerServiceWorker";
+import Board from "./screens/Board";
+import Welcome from "./screens/Welcome";
+import store from "./store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={Welcome} />
-      <Route path="/board/" component={Board} />
+    <Router>
+      <Switch>
+        <Route path="/board">
+          <Board />
+        </Route>
+        <Route path="/">
+          <Welcome />
+        </Route>
+      </Switch>
     </Router>
   </Provider>,
   document.getElementById("root")

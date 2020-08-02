@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const styles = `
   font-size: 2em;
@@ -20,5 +20,9 @@ const styles = `
   }
 `;
 
-export const Button = styled.button`${styles}`
-export const ButtonLink = styled(Link)`${styles}`;
+export const Button = styled.button`
+  ${styles}
+`;
+export const ButtonLink = styled(Link)`
+  ${styles}
+`;

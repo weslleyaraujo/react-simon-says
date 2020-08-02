@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { withReflex } from 'reflexbox';
+import styled from "styled-components";
+import { Box } from "reflexbox";
 
-const CenterOverlay = withReflex()(styled.div`
+const CenterOverlay = styled(Box)`
   position: absolute;
   margin: auto;
   top: 0;
@@ -10,9 +10,8 @@ const CenterOverlay = withReflex()(styled.div`
   right: 0;
   z-index: 4;
   text-align: center;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   height: 250px;
-`);
-
+`;
 
 export default CenterOverlay;

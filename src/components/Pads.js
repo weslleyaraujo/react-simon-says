@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Pad from './Pad';
-import { colors } from '../constants';
+import Pad from "./Pad";
+import { colors } from "../constants";
 
 export const PadsByComponentName = {
   GreenPad: ({ ...props }) => (
@@ -21,12 +21,7 @@ export const PadsByComponentName = {
 const Pads = ({ pad, onClick }) => {
   const { component } = pad;
   const Composed = PadsByComponentName[component];
-  return (
-    <Composed
-      {...pad}
-      onClick={onClick}
-    />
-  );
+  return <Composed {...pad} onClick={onClick} />;
 };
 
 export default Pads;
