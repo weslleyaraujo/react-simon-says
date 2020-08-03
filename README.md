@@ -1,13 +1,13 @@
 > This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-[Blogpost](https://medium.com/@_weslleyaraujo/building-a-simons-says-game-with-react-redux-e950bfda90f1#.m3b9ur213) on how and why's I built this app
+[Blogpost](https://weslleyaraujo.dev/posts/building-a-simon-says-game-with-react-and-redux) on how and why's I built this app
 
 # React Simon Says
 
 ![React Simon Says](./screenshot.png)
 
 So basically I needed a reason to play with the awesome [Styled Components](https://github.com/styled-components/styled-components) from [@mxstbr](http://twitter.com/mxstbr) and
-then I decided to build a "Simon Says" like game 
+then I decided to build a "Simon Says" like game
 
 You can play it [here](https://weslleyaraujo.github.io/react-simon-says/)
 
@@ -18,10 +18,10 @@ The app was build with [redux](https://github.com/reactjs/redux) so it was quite
 > tl;dr thunks and `async` functions play nice together :heart:
 
 ```js
-const foo = payload => async dispatch => {
+const foo = (payload) => async (dispatch) => {
   await sleep(500);
   dispatch(bar());
-}
+};
 ```
 
 ### Quick Start
