@@ -17,8 +17,7 @@ import Shell from "./Shell";
 export function Board(props) {
   const { actions } = props;
   const {
-    highscore,
-    game: { gameOver, score, singing },
+    game: { gameOver, score, singing, highscore },
     match,
     pads,
   } = useSelector((state) => state, shallowEqual);
@@ -36,8 +35,8 @@ export function Board(props) {
     ({ id }) => {
       const tail = match.guessed.length;
       const succeeded = match.all[tail] === id;
-
       if (!gameOver) {
+        window.navigator.vibrate && window.navigator.vibrate(10);
         actions.guess({ id, succeeded }).then(async ({ done }) => {
           if (done) {
             actions.nextLevel();

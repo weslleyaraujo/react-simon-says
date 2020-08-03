@@ -23,6 +23,7 @@ const Pad = styled(Box)`
   cursor: pointer;
   animation: none;
   transition: 0.2s;
+  -webkit-tap-highlight-color: transparent;
   ${(props) => (props.active ? activeCSS(props) : "")}
 
   @media (max-width: 600px) {
